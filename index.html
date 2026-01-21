@@ -4,55 +4,103 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>fixCodexHQ</title>
+
   <style>
     body{
       margin:0;
-      height:100vh;
+      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:#0b0f14;
-      color:#00ff88;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: radial-gradient(circle at top, #a855f7 0%, #581c87 40%, #0b001a 100%);
+      color:#fff;
+      font-family: Arial, sans-serif;
+      padding: 22px;
     }
-    .box{
-      width:min(700px, 92vw);
-      border:1px solid rgba(0,255,136,.25);
-      border-radius:14px;
-      padding:22px;
-      background:rgba(0,255,136,.05);
-      box-shadow:0 0 40px rgba(0,255,136,.08);
+
+    .card{
+      width:min(520px, 95vw);
+      border-radius:22px;
+      padding:18px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 25px 100px rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
     }
-    .line{opacity:.9; margin:8px 0;}
-    .dim{opacity:.6}
-    .btn{
-      display:inline-block;
+
+    .title{
+      font-size:20px;
+      font-weight:800;
+      margin:0;
+    }
+
+    .sub{
+      margin:8px 0 0 0;
+      opacity:.80;
+      font-size:13px;
+    }
+
+    .img{
       margin-top:16px;
-      padding:10px 14px;
-      border-radius:10px;
-      border:1px solid rgba(0,255,136,.35);
-      color:#00ff88;
-      text-decoration:none;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.20);
     }
-    .blink{animation: blink 1s infinite;}
-    @keyframes blink {50%{opacity:0}}
+
+    .img img{
+      width:100%;
+      display:block;
+    }
+
+    .btns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .btn{
+      flex:1;
+      min-width:200px;
+      text-align:center;
+      padding:11px 12px;
+      border-radius:14px;
+      text-decoration:none;
+      color:white;
+      font-weight:800;
+      background: rgba(0,0,0,.30);
+      border:1px solid rgba(255,255,255,.20);
+      transition: transform .12s ease;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+    }
+
+    .footer{
+      margin-top:12px;
+      opacity:.65;
+      font-size:12px;
+      text-align:center;
+    }
   </style>
 </head>
+
 <body>
-  <div class="box">
-    <div class="line dim">fixCodexHQ@macbook:~$</div>
-    <div class="line">initializing project... ✅</div>
-    <div class="line">connecting to GitHub Pages... ✅</div>
-    <div class="line">status: <b>LIVE</b> 🚀</div>
-    <div class="line">target: <b>rich life mode</b> 💸</div>
-    <div class="line dim">message to my friend: “oyuncu laptop mu? ben site açtım” 😎</div>
-    <div class="line">next: learn web dev <span class="blink">▌</span></div>
+  <div class="card">
+    <h1 class="title">🟣 özel sayfa</h1>
+    <p class="sub">iletişim bilgileri aşağıda</p>
 
-    <a class="btn" href="https://github.com/fixCodexHQ/first-project" target="_blank">View Source (GitHub)</a>
+    <div class="img">
+      <img src="assets/meme.jpeg" alt="ss">
+    </div>
+
+    <div class="btns">
+      <a class="btn" target="_blank" href="https://www.tiktok.com/@nil4tss">TikTok: @nil4tss</a>
+      <a class="btn" target="_blank" href="https://discord.com/app">Discord: ferraridenhizliyimben</a>
+    </div>
+
+    <div class="footer">made by fixCodexHQ</div>
   </div>
-  </div>
-
-<img src="assets/meme.jpeg" alt="meme" style="width:350px; border-radius:12px; margin-top:14px;">
-
 </body>
 </html>
