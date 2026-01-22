@@ -17,7 +17,6 @@
       --accent:#0a84ff;
       --ok:#16a34a;
       --shadow: 0 10px 26px rgba(15,23,42,.08);
-      --radius: 22px;
     }
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
@@ -27,6 +26,17 @@
       background: var(--bg);
       color: var(--text);
     }
+
+    /* DARK THEME */
+    body.dark{
+      --bg:#0b1220;
+      --text:#ffffff;
+      --muted:#b7beca;
+      --line:rgba(255,255,255,.14);
+      --chip:rgba(255,255,255,.08);
+      --shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+
     .wrap{
       width:min(980px, 92vw);
       margin:0 auto;
@@ -43,6 +53,10 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
+    body.dark header{
+      background: rgba(11,18,32,.78);
+    }
+
     .top{
       display:flex;
       align-items:center;
@@ -86,6 +100,25 @@
       justify-content:flex-end;
     }
 
+    /* Theme button */
+    .themeBtn{
+      width:40px;height:40px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(15,23,42,.05);
+      user-select:none;
+      transition: transform .12s ease;
+    }
+    .themeBtn:hover{ transform: translateY(-1px); }
+    .themeBtn:active{ transform: translateY(0px); }
+    body.dark .themeBtn{ background: rgba(255,255,255,.06); }
+    .themeIcon{ font-size:16px; }
+
     /* Instagram button */
     .igTop{
       display:inline-flex;
@@ -102,6 +135,7 @@
       box-shadow: 0 6px 18px rgba(15,23,42,.05);
       user-select:none;
     }
+    body.dark .igTop{ background: rgba(255,255,255,.06); }
     .igIcon{
       width:28px;height:28px;
       border-radius:10px;
@@ -110,7 +144,7 @@
       justify-content:center;
       background: var(--chip);
       border:1px solid var(--line);
-      color:#111827;
+      color: currentColor;
     }
     .igText{ font-weight:1000; }
 
@@ -123,6 +157,7 @@
       overflow:hidden;
       box-shadow: 0 6px 18px rgba(15,23,42,.05);
     }
+    body.dark .lang{ background: rgba(255,255,255,.06); }
     .lang button{
       border:0;
       background:transparent;
@@ -144,7 +179,9 @@
       border-radius: 24px;
       padding: 18px;
       box-shadow: var(--shadow);
+      background:#fff;
     }
+    body.dark .hero{ background: rgba(255,255,255,.04); }
     .title{
       font-size:24px;
       line-height:1.15;
@@ -181,6 +218,7 @@
       border:1px solid var(--line);
       background:#fafafa;
     }
+    body.dark .heroImg{ background: rgba(255,255,255,.04); }
     .heroImg img{ width:100%; display:block; object-fit:cover; }
 
     /* SECTION */
@@ -192,6 +230,7 @@
       background:#fff;
       box-shadow: var(--shadow);
     }
+    body.dark .section{ background: rgba(255,255,255,.04); }
     .section h2{
       margin:0;
       font-size:15px;
@@ -232,6 +271,7 @@
       border:1px solid var(--line);
       background:#fafafa;
     }
+    body.dark .mapBox{ background: rgba(255,255,255,.04); }
     iframe{ width:100%; height:320px; border:0; display:block; }
 
     /* Footer */
@@ -258,6 +298,9 @@
       backdrop-filter: blur(14px);
       border-top: 1px solid var(--line);
       z-index: 999;
+    }
+    body.dark .bottomBar{
+      background: rgba(11,18,32,.78);
     }
     .bottomGrid{
       width:min(980px, 92vw);
@@ -303,6 +346,10 @@
         </div>
 
         <div class="right">
+          <button class="themeBtn" id="themeBtn" aria-label="Theme">
+            <span class="themeIcon" id="themeIcon">🌙</span>
+          </button>
+
           <a class="igTop" target="_blank" href="https://www.instagram.com/akturkdental/" aria-label="Instagram">
             <span class="igIcon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
@@ -385,6 +432,22 @@
   </div>
 
   <script>
+    // THEME
+    const themeBtn = document.getElementById("themeBtn");
+    const themeIcon = document.getElementById("themeIcon");
+
+    function applyTheme(mode){
+      document.body.classList.toggle("dark", mode === "dark");
+      themeIcon.textContent = (mode === "dark") ? "☀️" : "🌙";
+      localStorage.setItem("theme", mode);
+    }
+    themeBtn.addEventListener("click", ()=>{
+      const isDark = document.body.classList.contains("dark");
+      applyTheme(isDark ? "light" : "dark");
+    });
+    applyTheme(localStorage.getItem("theme") || "light");
+
+    // LANGUAGE
     const dict = {
       sq: {
         top_sub:"Klinikë dentare • Shkodër",
