@@ -28,7 +28,7 @@
       color: var(--text);
     }
     .wrap{
-      width:min(960px, 92vw);
+      width:min(980px, 92vw);
       margin:0 auto;
       padding: 0 0 92px;
     }
@@ -47,17 +47,17 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:10px;
+      gap:12px;
     }
-    .brand{
+    .left{
       display:flex;
       align-items:center;
       gap:10px;
-      min-width: 190px;
+      min-width: 220px;
     }
     .logo{
-      width:42px;height:42px;
-      border-radius:14px;
+      width:46px;height:46px;
+      border-radius:16px;
       overflow:hidden;
       border:1px solid var(--line);
       background:#fff;
@@ -65,16 +65,53 @@
     }
     .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
     .brand h1{
-      font-size:15px;
+      font-size:16px;
       margin:0;
       font-weight:1000;
       line-height:1.1;
+      letter-spacing:.2px;
     }
     .brand p{
       margin:3px 0 0;
       font-size:12px;
       color:var(--muted);
       font-weight:900;
+    }
+
+    .right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    /* Instagram button */
+    .igTop{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      text-decoration:none;
+      font-weight:1000;
+      font-size:12px;
+      color:var(--text);
+      box-shadow: 0 6px 18px rgba(15,23,42,.05);
+      user-select:none;
+    }
+    .igIcon{
+      width:22px;height:22px;
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: var(--chip);
+      border:1px solid var(--line);
+      font-weight:1000;
+      line-height:1;
     }
 
     /* Language */
@@ -146,7 +183,7 @@
     }
     .heroImg img{ width:100%; display:block; object-fit:cover; }
 
-    /* Sections */
+    /* SECTION */
     .section{
       margin-top:14px;
       border:1px solid var(--line);
@@ -168,7 +205,7 @@
       line-height:1.7;
     }
 
-    /* Hours Table */
+    /* HOURS */
     table{
       width:100%;
       border-collapse:collapse;
@@ -187,7 +224,7 @@
     }
     .closed{ color:#ef4444; font-weight:1000; }
 
-    /* Map */
+    /* MAP */
     .mapBox{
       margin-top:12px;
       border-radius: 18px;
@@ -211,14 +248,8 @@
       font-weight:1000;
       font-size:12px;
     }
-    .smalllink{
-      color:var(--muted);
-      text-decoration:none;
-      font-weight:1000;
-    }
-    .smalllink:hover{ text-decoration:underline; }
 
-    /* Bottom mobile bar (2 buttons only) */
+    /* Bottom bar */
     .bottomBar{
       position: fixed;
       left: 0; right: 0; bottom: 0;
@@ -229,7 +260,7 @@
       z-index: 999;
     }
     .bottomGrid{
-      width:min(960px, 92vw);
+      width:min(980px, 92vw);
       margin:0 auto;
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -251,6 +282,7 @@
     @media (max-width: 420px){
       .title{ font-size:22px; }
       iframe{ height:280px; }
+      .igTop{ padding:9px 10px; }
     }
   </style>
 </head>
@@ -260,21 +292,28 @@
 
     <header>
       <div class="top">
-        <div class="brand">
+        <div class="left">
           <div class="logo">
             <img src="assets/akturkdental.jpeg" alt="Akturk Dental">
           </div>
-          <div>
+          <div class="brand">
             <h1>Akturk Dental</h1>
             <p data-i18n="top_sub">Klinikë dentare • Shkodër</p>
           </div>
         </div>
 
-        <div class="lang" title="Language">
-          <button id="langSQ" class="active">SQ</button>
-          <button id="langEN">EN</button>
-          <button id="langIT">IT</button>
-          <button id="langTR">TR</button>
+        <div class="right">
+          <a class="igTop" target="_blank" href="https://www.instagram.com/akturkdental/" aria-label="Instagram">
+            <span class="igIcon">⌁</span>
+            <span data-i18n="ig_btn">Instagram</span>
+          </a>
+
+          <div class="lang" title="Language">
+            <button id="langSQ" class="active">SQ</button>
+            <button id="langEN">EN</button>
+            <button id="langIT">IT</button>
+            <button id="langTR">TR</button>
+          </div>
         </div>
       </div>
     </header>
@@ -307,6 +346,7 @@
         <tr><td data-i18n="h6">E shtunë</td><td>09:00–19:00</td></tr>
         <tr><td data-i18n="h7">E diel</td><td class="closed" data-i18n="closed">Mbyllur</td></tr>
       </table>
+
       <p data-i18n="price_note">Detaje për çmime: WhatsApp.</p>
     </section>
 
@@ -321,9 +361,7 @@
 
     <footer>
       <div>© Akturk Dental • Shkodër</div>
-      <a class="smalllink" target="_blank" href="https://www.instagram.com/akturkdental/" data-i18n="ig_small">
-        Instagram: @akturkdental
-      </a>
+      <div data-i18n="footer">Website • Professional</div>
     </footer>
   </div>
 
@@ -341,6 +379,7 @@
     const dict = {
       sq: {
         top_sub:"Klinikë dentare • Shkodër",
+        ig_btn:"Instagram",
         hero_title:"Rezervoni takim shpejt",
         hero_desc:"Kurorë, zbardhim, mbushje, kanal, implant. Për çmim të detajuar dhe konsultë — na shkruani në WhatsApp.",
         b1:"✅ Higjienë & sterilizim",
@@ -353,10 +392,11 @@
         map_title:"Lokacioni",
         map_desc:"Në hartë shfaqet si “Akturk Dental”.",
         call_btn:"Telefono",
-        ig_small:"Instagram: @akturkdental"
+        footer:"Website • Profesionale"
       },
       en: {
         top_sub:"Dental clinic • Shkodër",
+        ig_btn:"Instagram",
         hero_title:"Book an appointment quickly",
         hero_desc:"Crowns, whitening, fillings, root canal, implants. For detailed pricing and consultation — message us on WhatsApp.",
         b1:"✅ Hygiene & sterilization",
@@ -369,10 +409,11 @@
         map_title:"Location",
         map_desc:"Shown on the map as “Akturk Dental”.",
         call_btn:"Call",
-        ig_small:"Instagram: @akturkdental"
+        footer:"Website • Professional"
       },
       it: {
         top_sub:"Clinica dentale • Shkodër",
+        ig_btn:"Instagram",
         hero_title:"Prenota rapidamente",
         hero_desc:"Corone, sbiancamento, otturazioni, canalare, impianti. Per prezzi dettagliati e consulenza — scrivici su WhatsApp.",
         b1:"✅ Igiene & sterilizzazione",
@@ -385,10 +426,11 @@
         map_title:"Posizione",
         map_desc:"Mostrato su Maps come “Akturk Dental”.",
         call_btn:"Chiama",
-        ig_small:"Instagram: @akturkdental"
+        footer:"Website • Professionale"
       },
       tr: {
         top_sub:"Diş kliniği • İşkodra",
+        ig_btn:"Instagram",
         hero_title:"Hızlı randevu alın",
         hero_desc:"Kaplama, beyazlatma, dolgu, kanal, implant. Detaylı fiyat ve danışma için WhatsApp’tan yazın.",
         b1:"✅ Hijyen & sterilizasyon",
@@ -401,7 +443,7 @@
         map_title:"Konum",
         map_desc:"Maps’te “Akturk Dental” olarak görünür.",
         call_btn:"Ara",
-        ig_small:"Instagram: @akturkdental"
+        footer:"Website • Profesyonel"
       }
     };
 
